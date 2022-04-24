@@ -1,0 +1,128 @@
+body{
+    margin:0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#map{
+    width: 85vw;
+    height:100vh;
+    margin:0;
+    flex-grow: 2;
+}
+
+#root{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar */
+
+#sidebar{
+    width: 15vw;
+    padding: 2vw;
+    position: relative;
+    background-color: rgb(241, 241, 241);
+
+    display: flex;
+    flex-direction: column;
+}
+
+#explorer{
+    flex-grow: 2;
+}
+
+#title{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#title > h1{
+    font-size:2vw;
+}
+
+/* Modal */
+
+#modalBG{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+#info{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    max-height: 50vh;
+    min-height: 30vh;
+    background-color: white;
+    z-index: 2;
+
+
+    display:flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+#info > #main{
+    flex-grow:2;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#eventDate{
+    margin: 0;
+    margin-top: 1em;
+}
+
+/* Marker Colors */
+
+.severeStorms{
+    color: skyblue;
+}
+
+.earthquakes {
+    color: lightsalmon;
+}
+
+.volcanoes{
+    color: orange;
+}
+
+.drought{
+    color: tan;
+}
+
+.floods{
+    color: #4486ff;
+}
+
+.landslides{
+    color: rgb(88, 13, 13);
+}
+
+.manmade{
+    color: #1e1e1e;
+}
+
+.seaLakeIce{
+    color: lightsteelblue;
+}
+
+.waterColor{
+    color: turquoise;
+}
+
+.wildfires{
+    color: orange;
+}
