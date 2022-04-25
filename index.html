@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natural Disaster Viewer</title>  
 
-    <!-- Mapbox Script files -->
+    <!-- Mapbox Script files + TurfJS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -71,7 +72,10 @@
 
                 <hr/>
 
-                <p>17 results:</p>
+                <div>
+                    <label for="eventSearch" style="margin-right:1em;" id="eventResults">Loading...</label> 
+                    <input id="eventSearch" type="text" placeholder="Search..."/>
+                </div>
                 <div id="eventsList"></div>
             </div>
             <footer>Powered by <a href="https://eonet.gsfc.nasa.gov/">NASA EONET</a></footer>

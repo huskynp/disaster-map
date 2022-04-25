@@ -19,6 +19,7 @@ const typeClasses = {
 let imperial = true;
 
 let markers = [], layers=[];
+let eventBoxes = [];
 
 const polyColor = (eventType) => {
     switch(eventType){
@@ -136,8 +137,11 @@ function showEvents(data) {
 
     data.events.forEach(event => {
         addMarker(event); // markers & layers
-        $("#eventsList").append(EventBox(event)); // sidebar boxes
+        eventBoxes.push(EventBox(event)); // sidebar boxes
     });
+
+    $('#eventsList').append(eventBoxes);
+    $('#eventResults').text(`${data.events.length} results:`);
 
 }
 
@@ -153,6 +157,8 @@ $.getJSON('https://eonet.gsfc.nasa.gov/api/v3/events', defaultData, showEvents)
 
 $('#filter').submit(function(e){
     e.preventDefault();
+
+    $('#eventResults').text(`Loading...`);
     
     let data = {
         'category': '',
@@ -175,6 +181,7 @@ $('#filter').submit(function(e){
     }
 
     $("#eventsList").empty();
+    eventBoxes = [];
 
     data.limit = $('#limit').val();
     data.status = $('#status').val();

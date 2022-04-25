@@ -104,13 +104,13 @@ function clickOn(geometry, category, last) {
         essential: true
     });
 
-    console.log(geometry);
-
     // remove path layer if it exists
     if (map.getLayer("path")) {
         map.removeLayer("path");
         map.removeSource("path");
     }
+
+    if(geometry===null){return;}
 
     // add a new path source + layer
     map.addSource("path", {
@@ -149,7 +149,13 @@ const EventBox = (event) => {
 
     setTimeout(()=>{
         $('#'+event.id).click(() => {  
-        clickOn(coords, category, event.geometry[event.geometry.length-1].coordinates);
+        if(event.geometry[0].type==="Point"){
+            clickOn(coords, category, event.geometry[event.geometry.length-1].coordinates);
+        }else{
+            var poly = turf.polygon(event.geometry[0].coordinates);
+            var center = turf.centroid(poly);
+            clickOn(null, category, center.geometry.coordinates);
+        }
     });}, 100)
     
     return `
@@ -172,4 +178,25 @@ $('#filter>#expand').on('click', () => {
             return $('#moreFilters').is(':visible') ? '<i class="fa-solid fa-angles-up fa-sm"></i> less' : '<i class="fa-solid fa-angles-down fa-sm"></i> more'
         })
     });
-})
+});
+
+const hasTitle = (e) => {
+    let title = e.substring(
+        e.lastIndexOf('<h3>')+4,e.lastIndexOf('</h3>'))
+        .toLowerCase();
+    return title.includes(
+            $("#eventSearch").val().toLowerCase()
+        );
+}
+
+$("#eventSearch").change(function(){
+    $("#eventsList").empty();
+    eventBoxes.forEach(e => {
+        if(hasTitle(e)){
+            $("#eventsList").append(e);
+        }
+    })
+    
+    // update results text
+    $('#eventResults').text(`${$('#eventsList').children().length} results:`);
+});
