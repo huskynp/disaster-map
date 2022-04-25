@@ -33,7 +33,7 @@ const polyColor = (eventType) => {
         case 'landslides':
             return 'rgb(88,13,13)';
         case 'seaLakeIce':
-            return '#008080';
+            return 'lightsteelblue';
         case 'severeStorms':
             return 'lightblue';
         case 'snow':
@@ -48,9 +48,6 @@ const polyColor = (eventType) => {
 }
 
 const eventPopup = (event) => {
-    let lastCoord = event.geometry[event.geometry.length - 1];
-    magnitude = lastCoord.magnitudeValue;
-    magUnit = lastCoord.magnitudeUnit;
 
     let categoryText = event.categories.map(c => c.title).join(', ').toUpperCase()
 
@@ -136,17 +133,21 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
 function showEvents(data) {
-    for (let i = 0; i < data.events.length; i++) {
-        console.log(i);
-        addMarker(data.events[i]);
-    }
+
+    data.events.forEach(event => {
+        addMarker(event); // markers & layers
+        $("#eventsList").append(EventBox(event)); // sidebar boxes
+    });
+
 }
 
 const defaultData = {
     'category': ['drought', 'seaLakeIce'].join(','),
     'status': 'all',
-    'limit': '100'
+    'limit': 100
 }
+
+console.log(defaultData);
 
 $.getJSON('https://eonet.gsfc.nasa.gov/api/v3/events', defaultData, showEvents)
 
@@ -156,13 +157,11 @@ $('#filter').submit(function(e){
     let data = {
         'category': '',
         'status': 'all',
-        'limit': '50'
+        'limit': 100
     }
     
     let categories = $("input[name='category[]']:checked").map(function(i, d){ return $(d).val(); });
     data.category = categories.get().join(',');
-    
-    console.log(data);
 
     // remove all stuff
     for(let i = 0; i < markers.length; i++){
@@ -174,6 +173,11 @@ $('#filter').submit(function(e){
         map.removeLayer(layers[i] + '-outline');
         map.removeSource(layers[i]);
     }
+
+    $("#eventsList").empty();
+
+    data.limit = $('#limit').val();
+    data.status = $('#status').val();
 
     markers = [];
     layers = [];

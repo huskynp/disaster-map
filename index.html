@@ -40,22 +40,39 @@
                 </div>
                 <form id="filter">
                     <div id="categories">
-                        <input type="checkbox" name="category[]" value="drought"> <label for="drought">Drought</label> <br />
+                        <input type="checkbox" name="category[]" value="drought" checked> <label for="drought">Drought</label> <br />
                         <input type="checkbox" name="category[]" value="dustHaze"> <label for="dustHaze">Dust, Haze and Pollution</label> <br />
                         <input type="checkbox" name="category[]" value="earthquakes"> <label for="earthquakes">Earthquakes</label>
                         <input type="checkbox" name="category[]" value="floods"> <label for="floods">Floods</label> <br />
                         <input type="checkbox" name="category[]" value="landslides"> <label for="landslides">Landslides</label> 
                         <input type="checkbox" name="category[]" value="manmade"> <label for="manmade">Manmade</label> <br />
-                        <input type="checkbox" name="category[]" value="seaLakeIce"> <label for="seaLakeIce">Sea and Lake Ice</label> <br />
+                        <input type="checkbox" name="category[]" value="seaLakeIce" checked> <label for="seaLakeIce">Sea and Lake Ice</label> <br />
                         <input type="checkbox" name="category[]" value="severeStorms"> <label for="severeStorms">Severe Storms</label>
                         <input type="checkbox" name="category[]" value="snow"> <label for="snow">Snow</label> <br />
                         <input type="checkbox" name="category[]" value="tempExtremes"> <label for="tempExtremes">Temperature Extremes</label> <br />
                         <input type="checkbox" name="category[]" value="volcanoes"> <label for="volcanoes">Volcanic Eruptions</label> <br />
                         <input type="checkbox" name="category[]" value="waterColor"> <label for="waterColor">Water Pollution</label> <br />
+                    </div> <br />
+
+                    <div id="moreFilters">
+                        <div><input style="width:25%;" type="number" id="limit" min="0" value="100" /> <label for="limit">Maximum Disasters</label> </div> <br/>
+                        
+                        <label for="status">Show: </label><select id="status">
+                            <option value="all">All Events</option>
+                            <option value="open">Current Events</option>
+                            <option value="closed">Finished Events</option>
+                        </select>
                     </div>
+
+                    <b id="expand"><i class="fa-solid fa-angles-down fa-sm"></i> more</b><br/><br/>
 
                     <input type="submit" value="Filter" />
                 </form>
+
+                <hr/>
+
+                <p>17 results:</p>
+                <div id="eventsList"></div>
             </div>
             <footer>Powered by <a href="https://eonet.gsfc.nasa.gov/">NASA EONET</a></footer>
         </div>

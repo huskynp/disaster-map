@@ -20,7 +20,7 @@ body{
 /* Sidebar */
 
 #sidebar{
-    width: 15vw;
+    width: 18vw;
     padding: 2vw;
     position: relative;
     background-color: rgb(241, 241, 241);
@@ -29,8 +29,65 @@ body{
     flex-direction: column;
 }
 
+#filter{
+    width: 100%;
+}
+
+#filter > #expand{
+    color:grey;
+}
+
+#filter > #expand:hover{
+    cursor: pointer;
+    color: black;
+}
+
 #explorer{
     flex-grow: 2;
+}
+
+#eventsList{
+    display: flex;
+    height: 38vh;
+    flex-direction: column;
+    gap: 5vh;
+    overflow-y: auto;
+    margin-top: 2vh;
+}
+
+.eventBox{
+    background-color: white;
+    min-height: 10vh;
+    box-shadow: 0 0.5vh 0.5vh 0 rgba(0,0,0,0.2);
+    border: 1px black solid;
+    display:flex;
+    align-items: center;
+}
+
+.eventBox:hover{
+    cursor: pointer;
+    background-color: rgb(241, 241, 241);
+}
+
+.eventBox > span{
+    margin: 1em;
+}
+
+.eventBox h3{
+    margin: 0 0 1em 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:9vw;
+    display:inline-block;
+}
+
+.boxDescription{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:9vw;
+    display:inline-block;
 }
 
 #title{
@@ -42,6 +99,14 @@ body{
 
 #title > h1{
     font-size:2vw;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+    padding-bottom: .5em;
 }
 
 /* Modal */
@@ -81,8 +146,44 @@ body{
 }
 
 #eventDate{
-    margin: 0;
-    margin-top: 1em;
+    margin: 1em 0 .25em 0;
+}
+
+#eventTracker{
+    max-height: 20vh;
+    width: 90%;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: black 1px solid;
+    padding: 0;
+}
+
+#eventIMG{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    max-height: 20vh;
+}
+
+#eventIMG > img{
+    max-height: 15vh;
+    object-fit: cover;
+    margin: 1em;
+}
+
+#eventIMG > span{ /* icon */
+    font-size: 2em;
+}
+
+#eventTracker li{
+    list-style:none;
+    background-color: lightgrey;
+}
+
+#eventTracker li:nth-child(even){
+    background-color: rgb(241, 241, 241);
 }
 
 /* Marker Colors */
