@@ -174,29 +174,20 @@ $('#moreFilters').hide();
 $('#filter>#expand').on('click', () => {
     $('#moreFilters').slideToggle(500, function(){
     $("#filter>#expand").html(function(){
-            console.log($('#moreFilters').is(':visible'))
             return $('#moreFilters').is(':visible') ? '<i class="fa-solid fa-angles-up fa-sm"></i> less' : '<i class="fa-solid fa-angles-down fa-sm"></i> more'
         })
     });
 });
 
-const hasTitle = (e) => {
-    let title = e.substring(
-        e.lastIndexOf('<h3>')+4,e.lastIndexOf('</h3>'))
-        .toLowerCase();
-    return title.includes(
-            $("#eventSearch").val().toLowerCase()
-        );
-}
-
 $("#eventSearch").change(function(){
-    $("#eventsList").empty();
-    eventBoxes.forEach(e => {
-        if(hasTitle(e)){
-            $("#eventsList").append(e);
+    $("#eventsList").children().each(function(i){
+        if($(this).find("h3").text().toLowerCase().includes($("#eventSearch").val())){
+            $(this).show();
+        }else{
+            $(this).hide();
         }
-    })
+    });
     
     // update results text
-    $('#eventResults').text(`${$('#eventsList').children().length} results:`);
+    $('#eventResults').text(`${$('#eventsList').children(":visible").length} results:`);
 });
