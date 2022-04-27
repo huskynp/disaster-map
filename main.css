@@ -48,7 +48,7 @@ body{
 
 #eventsList{
     display: flex;
-    height: 38vh;
+    height: 34.5vh;
     flex-direction: column;
     gap: 5vh;
     overflow-y: auto;
