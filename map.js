@@ -8,7 +8,7 @@ const typeClasses = {
     'landslides': '<i class="fa-solid fa-hill-rockslide fa-2xl"></i>',
     'manmade': '<i class="fa-solid fa-person-burst fa-2xl"></i>',
     'seaLakeIce': '<i class="fa-solid fa-icicles fa-2xl"></i>',
-    'severeStorms': '<i class="fa-solid fa-cloud-showers-water fa-2xl storm"></i>',
+    'severeStorms': '<i class="fa-solid fa-hurricane fa-2xl"></i>',
     'snow': '<i class="fa-solid fa-snowflake fa-2xl"></i>',
     'tempExtremes': '<i class="fa-solid fa-temperature-arrow-up fa-2xl"></i>',
     'volcanoes': '<i class="fa-solid fa-volcano fa-2xl"></i>',
@@ -186,7 +186,7 @@ $('#filter').submit(function(e){
 
     markers = [];
     layers = [];
-    
+
     $.getJSON('https://eonet.gsfc.nasa.gov/api/v3/events', data, showEvents);
     
     
