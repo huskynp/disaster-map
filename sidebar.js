@@ -82,12 +82,10 @@ const getWikiImage = (name, category) => {
     let href = '';
     $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${name}&format=json&srprop=""&formatversion=2&srlimit=1&srinfo=suggestion&origin=*`, function(data){
         try{
-            console.log(data);
             let pageID = data.query.search[0].pageid;
             $("#eventIMGProgress").attr('value',1);
 
             $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&list=&pageids=${pageID}&piprop=thumbnail&pithumbsize=400&origin=*`, function(data){
-                console.log(data);
                 href = data.query.pages[pageID.toString()].thumbnail;
                 if(href===undefined){
                     $("#eventIMG").html(`<span class="${category}">${typeClasses[category]}</span>`);

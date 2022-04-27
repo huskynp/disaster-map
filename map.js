@@ -151,8 +151,6 @@ const defaultData = {
     'limit': 100
 }
 
-console.log(defaultData);
-
 $.getJSON('https://eonet.gsfc.nasa.gov/api/v3/events', defaultData, showEvents)
 
 $('#filter').submit(function(e){
@@ -188,8 +186,7 @@ $('#filter').submit(function(e){
 
     markers = [];
     layers = [];
-
-    console.log(data);
+    
     $.getJSON('https://eonet.gsfc.nasa.gov/api/v3/events', data, showEvents);
     
     
