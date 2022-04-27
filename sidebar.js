@@ -48,6 +48,36 @@ const getCategoryName = (e) => { // change the name for some
     }
 }
 
+const flyToPoint = (category, point) => {
+    switch(category){
+        case 'volcanoes':
+        case 'landslides':
+            map.flyTo({
+                center: point,
+                zoom: (category === 'volcanoes' ? 10 : 8),
+                essential: true,
+                maxDuration: 2000
+            });
+            setTimeout(() => {
+                const camera = map.getFreeCameraOptions();
+                const elevation = map.queryTerrainElevation(point);
+                camera.position = mapboxgl.MercatorCoordinate.fromLngLat([point[0]-.06, point[1]-.06], elevation+6000);
+                camera.lookAtPoint(point);
+
+                map.setFreeCameraOptions(camera);
+            }, 2000);
+
+            break;  
+        default:
+            map.flyTo({
+                center: point,
+                zoom: 6,
+                essential: true,
+
+            });       
+    }
+}
+
 const getWikiImage = (name, category) => {
     let href = '';
     $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${name}&format=json&srprop=""&formatversion=2&srlimit=1&srinfo=suggestion&origin=*`, function(data){
@@ -98,11 +128,7 @@ const MoreInfo = (event) => {
 function clickOn(geometry, category, last) {
 
     // fly to the clicked feature
-    map.flyTo({
-        center: last,
-        zoom: 8,
-        essential: true
-    });
+    flyToPoint(category, last);
 
     // remove path layer if it exists
     if (map.getLayer("path")) {

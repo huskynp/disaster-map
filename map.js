@@ -125,10 +125,10 @@ function addMarker(event){
 
 const map = new mapboxgl.Map({
     container: 'map',
-    projection:"mercator",
+    projection:'mercator',
     style:'mapbox://styles/huskynp/cl2c1wde9000j14v8nxvbf42j',
-    center: [-75, 5], // starting position [lng, lat]
-    zoom: 5 // starting zoom
+    center: [45, 0], // starting position [lng, lat]
+    zoom: 3 // starting zoom
 })
 
 map.addControl(new mapboxgl.NavigationControl());
